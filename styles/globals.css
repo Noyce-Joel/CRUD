@@ -1,0 +1,258 @@
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  width: 100vw;
+  height: 100vh;
+  
+  margin-right: auto;
+  margin-left: auto
+}
+
+.homepage-wrap {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  gap: 1rem;
+}
+
+.nav-wrap {
+  display: flex;
+  z-index: 25;
+  
+}
+
+.nav {
+  display: flex;
+  position: absolute;
+  gap: 1rem;
+  top: 1rem;
+  right: 1.5rem;
+  
+}
+
+button {
+  
+  padding: 10px;
+  border: 2px solid #3498db;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #3498db;
+}
+
+.title {
+  display: flex;
+  position: absolute;
+  top: 0.7rem;
+  left: 1.5rem;
+  font-size: calc(20px);
+  text-decoration: none;
+  color: white;
+  background: #195177;
+  padding: 10px;
+}
+
+
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  border-bottom: solid;
+  padding: 5px;
+}
+
+.user-info input {
+  outline: none;
+  border: none;
+  line-height: 25px;
+  font-size: calc(25px);
+  width: 25vw;
+}
+
+.user-info label {
+  font-size: calc(14px);
+}
+
+
+
+
+
+.leaderboard-wrap {
+  font-family: 'Arial', sans-serif;
+  margin: 20px;
+  width: 95%;
+  height: 50%;
+  box-sizing: border-box;
+  overflow: scroll;
+ 
+  
+}
+
+.leaderboard-wrap::-webkit-scrollbar {
+  width: 0em;
+  background: transparent
+}
+
+
+
+#sort {
+  padding: 10px;
+  border: 2px solid #3498db;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #3498db;
+  
+}
+
+.leaderboard-table {
+  
+  margin-top: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ 
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  
+}
+
+.row-heads {
+  background-color: rgb(28, 86, 124);
+  color: #ffffff;
+  
+}
+
+.td-data {
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #ecf0f1;
+}
+
+.td-data:first-child {
+  text-align: left;
+}
+
+
+
+input {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ecf0f1;
+  border-radius: 5px;
+  background-color: rgb(28, 86, 124) ;
+}
+
+
+.gangs-grid-wrap {
+  display: flex;
+  overflow-x: hidden;
+  background-color: rgb(28, 86, 124);
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+@media screen and (max-width: 1000px) {
+  .gangs-grid-wrap{
+    width: 100%
+  }
+}
+
+.gangs-grid{
+  display: flex;
+  width: 100%;
+  overflow-x: scroll;
+  height: 100%;
+  width: min-content;
+  height: min-content;
+  gap: 2rem;
+  padding: 0;
+}
+
+.gangs-grid::-webkit-scrollbar {
+  width: 0em;
+  background: transparent
+}
+
+.gang-card {
+  
+  background-color: #fff;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+  color: rgb(28, 86, 124);
+}
+
+.gang-card:hover {
+  transform: scale(1.05);
+}
+
+.gang-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+.curr-gang-wrap{
+  display: flex;
+  width: 100vw;
+}
+
+.curr-gang{
+  width: 70%
+}
+
+
+
+.table-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+
+
+td input {
+  width: 100px;
+  font-size: calc(25px);
+  text-align: center;
+  outline: none;
+  border: none;
+}
+
+td input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; /* Removes the default margin */
+}
+
+
+
+.add-player-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  gap: 1rem;
+}
+
+.player-box input::placeholder{
+  color: white;
+  
+}
