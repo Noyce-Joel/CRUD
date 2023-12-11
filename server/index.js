@@ -1,9 +1,21 @@
+'use server'
+
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
+import 'dotenv/config'
 import mongoose from "mongoose";
-const connect = async () => {
-  await mongoose.connect(process.env.MONGODB_URI);
+
+// const key = process.env.local.MONGODB_URI
+
+async function connect(){
+  try{
+  await mongoose.connect('mongodb+srv://noycejoel:Kierkegaard12@big2.d9b8whz.mongodb.net/?retryWrites=true&w=majority');
+  } catch (error) {
+    console.error
+  }
 };
+
+connect();
 
 const Schema = mongoose.Schema;
 const Player = new Schema({
@@ -200,33 +212,35 @@ const resolvers = {
           player.points += points;
           await player.save();
         }
-
+    
         console.log("Players updated");
-
+    
         const updatedGame = await gameModel.findOne({ game });
         for (const playerScore of playerScores) {
-          const { wins, threes, points } = playerScore;
-          updatedGame.players.forEach((player) => {
+          const { id, wins, threes, points } = playerScore;
+          const player = updatedGame.players.find(player => player.id === id);
+          if (player) {
             player.wins += wins;
             player.threes += threes;
             player.points += points;
-          });
+          }
         }
         await updatedGame.save();
-
+    
         console.log("Game updated");
-
+    
         const updatedGang = await gangModel.findOne({ gang });
         for (const playerScore of playerScores) {
-          const { wins, threes, points } = playerScore;
-          updatedGang.players.forEach((player) => {
+          const { id, wins, threes, points } = playerScore;
+          const player = updatedGang.players.find(player => player.id === id);
+          if (player) {
             player.wins += wins;
             player.threes += threes;
             player.points += points;
-          });
+          }
         }
         await updatedGang.save();
-
+    
         console.log("Gang updated");
       } catch (error) {
         console.error(`Error updating player scores: ${error.message}`);
