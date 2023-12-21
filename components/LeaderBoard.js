@@ -1,29 +1,15 @@
-import { gql, useQuery } from "@apollo/client";
+
 import React, { useState } from "react";
 
-function LeaderBoard() {
+function LeaderBoard({players}) {
   const [sortBy, setSortBy] = useState("points");
-  const GET_PLAYERS = gql`
-    query {
-      players(name: "") {
-        id
-        name
-        wins
-        threes
-        points
-      }
-    }
-  `;
-
-  const { loading, error, data } = useQuery(GET_PLAYERS);
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  
 
   const handleSort = (e) => {
     setSortBy(e.target.value);
   };
-  const playerData = [...data.players]
-  const players = playerData.sort((a, b) => {
+  const playerData = [...players];
+  const sortedPlayers = playerData.sort((a, b) => {
     if (sortBy === "points") return b.points - a.points;
     else if (sortBy === "wins") return b.wins - a.wins;
     else if (sortBy === "threes") return b.threes - a.threes;
@@ -53,7 +39,7 @@ function LeaderBoard() {
             </thead>
 
             <tbody>
-              {players.map((player) => (
+              {sortedPlayers.map((player) => (
                 <tr key={player.id} className="row-heads">
                   <td className="td-data">{player.name}</td>
                   <td className="td-data">{player.wins}</td>

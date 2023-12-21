@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { useRouter } from "next/router";
 
-function NewGangComp() {
+function NewGang() {
 
   const NEW_GANG = gql`
     mutation createGang($gangName: String!, $newPlayers: [NewPlayerInput]!) {
@@ -123,4 +123,4 @@ function NewGangComp() {
   );
 }
 
-export default NewGangComp;
+export default NewGang;

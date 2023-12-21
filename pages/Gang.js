@@ -6,7 +6,7 @@ function Gang() {
   const router = useRouter();
   const selectedGang = router.query.name;
 
-  console.log(selectedGang);
+  
   const GET_GANG = gql`
     query GetGang($name: String!) {
       gang(name: $name) {
@@ -38,6 +38,7 @@ function Gang() {
   const [newGame] = useMutation(NEW_GAME);
   const { data, loading, error } = useQuery(GET_GANG, {
     variables: { name: selectedGang },
+    fetchPolicy: "network-only",
   });
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;

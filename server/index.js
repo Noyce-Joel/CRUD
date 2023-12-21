@@ -5,11 +5,11 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import 'dotenv/config'
 import mongoose from "mongoose";
 
-const key = process.env.local.MONGODB_URI
+// const key = process.env.local.MONGODB_URI
 
 async function connect(){
   try{
-  await mongoose.connect(key);
+  await mongoose.connect('mongodb+srv://noycejoel:Kierkegaard12@big2.d9b8whz.mongodb.net/?retryWrites=true&w=majority');
   } catch (error) {
     console.error
   }
@@ -213,7 +213,7 @@ const resolvers = {
           await player.save();
         }
     
-        console.log("Players updated");
+        
     
         const updatedGame = await gameModel.findOne({ game });
         for (const playerScore of playerScores) {
@@ -227,7 +227,7 @@ const resolvers = {
         }
         await updatedGame.save();
     
-        console.log("Game updated");
+       
     
         const updatedGang = await gangModel.findOne({ gang });
         for (const playerScore of playerScores) {
@@ -241,7 +241,7 @@ const resolvers = {
         }
         await updatedGang.save();
     
-        console.log("Gang updated");
+        
       } catch (error) {
         console.error(`Error updating player scores: ${error.message}`);
       }

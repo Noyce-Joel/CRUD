@@ -1,31 +1,13 @@
 import { gql, useQuery } from "@apollo/client";
 import React, { useState } from "react";
 import Link from "next/link";
-function CurrentGangs() {
-  const GET_GANGS = gql`
-    query {
-      gangs {
-        name
-        players {
-          id
-          name
-          wins
-          threes
-          wins
-          points
-        }
-      }
-    }
-  `;
+function CurrentGangs({gangs}) {
+ 
 
-  const { data, loading, error } = useQuery(GET_GANGS);
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error</p>;
-  console.log(data);
   return (
     <div className="gangs-grid-wrap">
     <div className="gangs-grid">
-      {data.gangs.map((gang, idx) => (
+      {gangs.map((gang, idx) => (
         <Link
           key={idx}
           href={{

@@ -1,6 +1,6 @@
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Table() {
   const router = useRouter();
@@ -55,6 +55,7 @@ function Table() {
     data: gameData,
   } = useQuery(GET_GAME, {
     variables: { date: dateQuery },
+    fetchPolicy: "network-only",
   });
   const {
     loading: gangLoading,
@@ -62,14 +63,21 @@ function Table() {
     data: gangData,
   } = useQuery(GET_GANG, {
     variables: { name: nameQuery },
+    fetchPolicy: "network-only",
   });
   const [updateScores] = useMutation(UPDATE_SCORES);
-  const [players, setPlayers] = useState([
-    { wins: 0, threes: 0, points: 0 },
-    { wins: 0, threes: 0, points: 0 },
-    { wins: 0, threes: 0, points: 0 },
-    { wins: 0, threes: 0, points: 0 },
-  ]);
+  const [players, setPlayers] = useState([]);
+  useEffect(() => {
+    if (gameData && gameData.game && gameData.game.players) {
+      setPlayers(
+        gameData.game.players.map((player) => ({
+          wins: player.wins,
+          threes: player.threes,
+          points: player.points,
+        }))
+      );
+    }
+  }, [gameData]);
 
   if (gameLoading || gangLoading) return <p>Loading...</p>;
   if (gameError || gangError)
@@ -79,6 +87,8 @@ function Table() {
         {gameError?.message}
       </p>
     );
+
+  // Initialize players state with gameData.game.players
 
   const handleInputChange = (index, field) => (e) => {
     const newPlayers = [...players];
