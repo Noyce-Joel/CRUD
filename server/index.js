@@ -5,11 +5,11 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import 'dotenv/config'
 import mongoose from "mongoose";
 
-// const key = process.env.local.MONGODB_URI
+const key = process.env.local.MONGODB_URI
 
 async function connect(){
   try{
-  await mongoose.connect('mongodb+srv://noycejoel:Kierkegaard12@big2.d9b8whz.mongodb.net/?retryWrites=true&w=majority');
+  await mongoose.connect(key);
   } catch (error) {
     console.error
   }
